@@ -114,7 +114,18 @@ public class ClientForm2Controller {
     }
 
     public void btnImageChooserOnAction(MouseEvent actionEvent) throws IOException {
+        // get the file selected
+        FileChooser chooser = new FileChooser();
+        Stage stage = new Stage();
+        file = chooser.showOpenDialog(stage);
 
+        if (file != null) {
+//            dataOutputStream.writeUTF(file.getPath());
+            path = file.getPath();
+            System.out.println("selected");
+            System.out.println(file.getPath());
+            isImageChoose = true;
+        }
     }
 
     public void btnExitOnAction(MouseEvent actionEvent) throws IOException {
