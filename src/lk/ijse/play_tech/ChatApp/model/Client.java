@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -29,6 +26,11 @@ public class Client {
     private DataOutputStream dataOutputStream;
     private String message = "";
 
+
+
+    public Client(int port){
+        this.port = port;
+    }
 
 
 
