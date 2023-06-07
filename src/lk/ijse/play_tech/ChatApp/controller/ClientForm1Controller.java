@@ -134,7 +134,6 @@ public class ClientForm1Controller  {
         file = chooser.showOpenDialog(stage);
 
         if (file != null) {
-//            dataOutputStream.writeUTF(file.getPath());
             path = file.getPath();
             System.out.println("selected");
             System.out.println(file.getPath());
