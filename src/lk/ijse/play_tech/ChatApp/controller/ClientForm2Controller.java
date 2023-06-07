@@ -129,9 +129,43 @@ public class ClientForm2Controller {
     }
 
     public void btnExitOnAction(MouseEvent actionEvent) throws IOException {
-
+        if (socket != null) {
+            dataOutputStream.writeUTF("exit".trim());
+            dataOutputStream.flush();
+            System.exit(0);
+        }
+        System.exit(0);
     }
 
     public void btnEmojiOnAction(MouseEvent mouseEvent) {
-
+        if (isUsed) {
+            emoji.getChildren().clear();
+            isUsed = false;
+            return;
+        }
+        isUsed = true;
+        VBox dialogVbox = new VBox(20);
+        ImageView smile = new ImageView(new Image("lk/ijse/play_tech/ChatApp/assets/smile.png"));
+        smile.setFitWidth(30);
+        smile.setFitHeight(30);
+        dialogVbox.getChildren().add(smile);
+        ImageView heart = new ImageView(new Image("lk/ijse/play_tech/ChatApp/assets/gameicon.png"));
+        heart.setFitWidth(30);
+        heart.setFitHeight(30);
+        dialogVbox.getChildren().add(heart);
+        ImageView sadFace = new ImageView(new Image("lk/ijse/play_tech/ChatApp/assets/sad-face.png"));
+        sadFace.setFitWidth(30);
+        sadFace.setFitHeight(30);
+        dialogVbox.getChildren().add(sadFace);
+        smile.setOnMouseClicked(event -> {
+            txtMessage.setText(txtMessage.getText() + "☺");
+        });
+        heart.setOnMouseClicked(event -> {
+            txtMessage.setText(txtMessage.getText() + "♥");
+        });
+        sadFace.setOnMouseClicked(event -> {
+            txtMessage.setText(txtMessage.getText() + "☹");
+        });
+        emoji.getChildren().add(dialogVbox);
+    }
 }
