@@ -1,7 +1,8 @@
 package lk.ijse.play_tech.ChatApp.Controller;
-
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -9,13 +10,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
+import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 
-public class ClientForm1Controller {
+public class ClientForm1Controller  {
     public ScrollPane msgContext;
     public TextField txtMessage;
     public AnchorPane context = new AnchorPane();
@@ -103,6 +111,10 @@ public class ClientForm1Controller {
 
     }
 
+    public void btnSendOnAction(MouseEvent actionEvent) throws IOException {
+        sendMessage();
+    }
+
     private void sendMessage() throws IOException {
         if (isImageChoose) {
             dataOutputStream.writeUTF(path.trim());
@@ -115,15 +127,59 @@ public class ClientForm1Controller {
         txtMessage.clear();
     }
 
-    public void btnSendOnAction(MouseEvent mouseEvent) {
+    public void btnImageChooserOnAction(MouseEvent actionEvent) throws IOException {
+        // get the file selected
+        FileChooser chooser = new FileChooser();
+        Stage stage = new Stage();
+        file = chooser.showOpenDialog(stage);
+
+        if (file != null) {
+//            dataOutputStream.writeUTF(file.getPath());
+            path = file.getPath();
+            System.out.println("selected");
+            System.out.println(file.getPath());
+            isImageChoose = true;
+        }
+    }
+
+    public void btnExitOnAction(MouseEvent actionEvent) throws IOException {
+        if (socket != null) {
+            dataOutputStream.writeUTF("exit".trim());
+            dataOutputStream.flush();
+            System.exit(0);
+        }
+        System.exit(0);
     }
 
     public void btnEmojiOnAction(MouseEvent mouseEvent) {
-    }
-
-    public void btnImageChooserOnAction(MouseEvent mouseEvent) {
-    }
-
-    public void btnExitOnAction(MouseEvent mouseEvent) {
+        if (isUsed) {
+            emoji.getChildren().clear();
+            isUsed = false;
+            return;
+        }
+        isUsed = true;
+        VBox dialogVbox = new VBox(20);
+        ImageView smile = new ImageView(new Image("lk/ijse/play_tech/ChatApp/assets/smile.png"));
+        smile.setFitWidth(30);
+        smile.setFitHeight(30);
+        dialogVbox.getChildren().add(smile);
+        ImageView heart = new ImageView(new Image("lk/ijse/play_tech/ChatApp/assets/gameicon.png"));
+        heart.setFitWidth(30);
+        heart.setFitHeight(30);
+        dialogVbox.getChildren().add(heart);
+        ImageView sadFace = new ImageView(new Image("lk/ijse/play_tech/ChatApp/assets/sad-face.png"));
+        sadFace.setFitWidth(30);
+        sadFace.setFitHeight(30);
+        dialogVbox.getChildren().add(sadFace);
+        smile.setOnMouseClicked(event -> {
+            txtMessage.setText(txtMessage.getText() + "☺");
+        });
+        heart.setOnMouseClicked(event -> {
+            txtMessage.setText(txtMessage.getText() + "♥");
+        });
+        sadFace.setOnMouseClicked(event -> {
+            txtMessage.setText(txtMessage.getText() + "☹");
+        });
+        emoji.getChildren().add(dialogVbox);
     }
 }
