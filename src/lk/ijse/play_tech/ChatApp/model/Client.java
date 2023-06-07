@@ -33,5 +33,9 @@ public class Client {
     }
 
 
+    public void acceptConnection() {
+    }
 
+    public void setInputAndOutput() {
+    }
 }
