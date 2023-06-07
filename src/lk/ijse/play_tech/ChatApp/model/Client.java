@@ -28,14 +28,19 @@ public class Client {
 
 
 
-    public Client(int port){
+    public Client(int port) {
         this.port = port;
     }
 
 
-    public void acceptConnection() {
+    public void acceptConnection() throws IOException {
+        serverSocket = new ServerSocket(port);
+        this.accept = serverSocket.accept();
     }
 
-    public void setInputAndOutput() {
+
+    public void setInputAndOutput() throws IOException {
+        this.dataInputStream = new DataInputStream(accept.getInputStream());
+        this.dataOutputStream = new DataOutputStream(accept.getOutputStream());
     }
 }
