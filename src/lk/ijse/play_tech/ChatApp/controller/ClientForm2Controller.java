@@ -102,7 +102,15 @@ public class ClientForm2Controller {
     }
 
     public void btnSendOnAction(MouseEvent actionEvent) throws IOException {
-
+        if (isImageChoose) {
+            dataOutputStream.writeUTF(path.trim());
+            dataOutputStream.flush();
+            isImageChoose = false;
+        } else {
+            dataOutputStream.writeUTF(lblClient.getText() + " : " + txtMessage.getText().trim());
+            dataOutputStream.flush();
+        }
+        txtMessage.clear();
     }
 
     public void btnImageChooserOnAction(MouseEvent actionEvent) throws IOException {
