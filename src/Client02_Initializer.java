@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ServerInitializer extends Application {
+public class Client02_Initializer extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -13,7 +13,7 @@ public class ServerInitializer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("lk/play_tech/chat_application/view/server-form.fxml"))));
+        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("lk/play_tech/chat_application/view/login-form-02.fxml"))));
         primaryStage.setAlwaysOnTop(true);
         primaryStage.show();
     }
