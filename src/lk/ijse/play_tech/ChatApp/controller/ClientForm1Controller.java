@@ -171,13 +171,13 @@ public class ClientForm1Controller  {
         sadFace.setFitHeight(30);
         dialogVbox.getChildren().add(sadFace);
         smile.setOnMouseClicked(event -> {
-            txtMessage.setText(txtMessage.getText() + "☺");
+            txtMessage.setText(txtMessage.getText() + "✌");
         });
         heart.setOnMouseClicked(event -> {
-            txtMessage.setText(txtMessage.getText() + "♥");
+            txtMessage.setText(txtMessage.getText() + "💻");
         });
         sadFace.setOnMouseClicked(event -> {
-            txtMessage.setText(txtMessage.getText() + "☹");
+            txtMessage.setText(txtMessage.getText() + "🙂");
         });
         emoji.getChildren().add(dialogVbox);
     }
