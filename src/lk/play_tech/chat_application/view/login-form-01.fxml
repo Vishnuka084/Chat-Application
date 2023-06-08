@@ -8,24 +8,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="loginContext" prefHeight="341.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.play_tech.chat_application.controller.LoginForm01Controller">
+<AnchorPane fx:id="loginContext" prefHeight="474.0" prefWidth="704.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.play_tech.chat_application.controller.LoginForm01Controller">
    <children>
-      <ImageView fitHeight="350.0" fitWidth="560.0" layoutY="-6.0" opacity="0.7" pickOnBounds="true">
+      <ImageView fitHeight="474.0" fitWidth="713.0" layoutX="-2.0" layoutY="-1.0" opacity="1" pickOnBounds="true">
          <image>
             <Image url="@../assets/main-image.jpg" />
          </image>
       </ImageView>
-      <JFXTextField fx:id="txtName" alignment="CENTER" focusColor="#0096c7" layoutX="165.0" layoutY="144.0" promptText="Enter Your Name" style="-fx-text-fill: #5c5c5c; -fx-prompt-text-fill: #5c5c5c;" unFocusColor="#5c5c5c">
+      <JFXTextField fx:id="txtName" alignment="CENTER" focusColor="#0096c7" layoutX="438.0" layoutY="225.0" promptText="Enter Your Name" style="-fx-text-fill: #5c5c5c; -fx-prompt-text-fill: #5c5c5c;" unFocusColor="#5c5c5c">
          <font>
-            <Font name="Ubuntu" size="20.0" />
+            <Font size="21.0" />
          </font></JFXTextField>
-      <JFXButton layoutX="217.0" layoutY="229.0" onAction="#btnLoginOnAction" style="-fx-background-color: #2ec4b6; -fx-background-radius: 10;" text="Start Chat" textFill="WHITE">
+      <JFXButton layoutX="473.0" layoutY="289.0" onAction="#btnLoginOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-background-color: #2ec4b6; -fx-background-radius: 10;" text="Start Chat" textFill="WHITE">
          <font>
             <Font name="Ubuntu" size="20.0" />
          </font></JFXButton>
-      <Label layoutX="189.0" layoutY="54.0" text="Welcome">
+      <Label layoutX="438.0" layoutY="102.0" text="Welcome">
          <font>
-            <Font name="Ubuntu Bold" size="40.0" />
+            <Font name="Bell MT Bold" size="53.0" />
+         </font>
+      </Label>
+      <Label layoutX="122.0" layoutY="116.0" prefHeight="38.0" prefWidth="75.0" text="play_Tech" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="400.0" layoutY="422.0" prefHeight="38.0" prefWidth="181.0" text="IJSE@Copyright- version 2.02.0">
+         <font>
+            <Font name="System Bold" size="10.0" />
          </font>
       </Label>
    </children>
