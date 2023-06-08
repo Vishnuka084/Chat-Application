@@ -40,7 +40,6 @@ public class ClientForm3Controller {
     public static String name;
     boolean isUsed = false;
 
-
     public void initialize() {
         Platform.setImplicitExit(false);
         msgContext.setContent(context);
@@ -112,6 +111,30 @@ public class ClientForm3Controller {
         txtMessage.clear();
     }
 
+    public void btnImageChooserOnAction(MouseEvent actionEvent) throws IOException {
+        // get the file selected
+        FileChooser chooser = new FileChooser();
+        Stage stage = new Stage();
+        file = chooser.showOpenDialog(stage);
+
+        if (file != null) {
+//            dataOutputStream.writeUTF(file.getPath());
+            path = file.getPath();
+            System.out.println("selected");
+            System.out.println(file.getPath());
+            isImageChoose = true;
+        }
+    }
+
+    public void btnExitOnAction(MouseEvent actionEvent) throws IOException {
+        if (socket != null) {
+            dataOutputStream.writeUTF("exit".trim());
+            dataOutputStream.flush();
+            System.exit(0);
+        }
+        System.exit(0);
+    }
+
     public void btnEmojiOnAction(MouseEvent mouseEvent) {
         if (isUsed) {
             emoji.getChildren().clear();
@@ -133,37 +156,14 @@ public class ClientForm3Controller {
         sadFace.setFitHeight(30);
         dialogVbox.getChildren().add(sadFace);
         smile.setOnMouseClicked(event -> {
-            txtMessage.setText(txtMessage.getText() + "☺");
+            txtMessage.setText(txtMessage.getText() + "✌");
         });
         heart.setOnMouseClicked(event -> {
-            txtMessage.setText(txtMessage.getText() + "♥");
+            txtMessage.setText(txtMessage.getText() + "💻");
         });
         sadFace.setOnMouseClicked(event -> {
-            txtMessage.setText(txtMessage.getText() + "☹");
+            txtMessage.setText(txtMessage.getText() + "🙂");
         });
         emoji.getChildren().add(dialogVbox);
-    }
-
-    public void btnImageChooserOnAction(MouseEvent mouseEvent) {
-        //--------- get the file selected
-        FileChooser chooser = new FileChooser();
-        Stage stage = new Stage();
-        file = chooser.showOpenDialog(stage);
-
-        if (file != null) {
-            path = file.getPath();
-            System.out.println("selected");
-            System.out.println(file.getPath());
-            isImageChoose = true;
-        }
-    }
-
-    public void btnExitOnAction(MouseEvent mouseEvent) throws IOException {
-        if (socket != null) {
-            dataOutputStream.writeUTF("exit".trim());
-            dataOutputStream.flush();
-            System.exit(0);
-        }
-        System.exit(0);
     }
 }
